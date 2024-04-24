@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\DeleteCompletedTasks;
+use App\Console\Commands\NotifyUnfinishedTasks;
 use App\Console\Commands\TestJobExecution;
 use App\Console\Commands\TestTaskNotification;
 use App\Jobs\TaskNotifcationJob;
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         TestJobExecution::class,
         TestTaskNotification::class,
-        DeleteCompletedTasks::class
+        DeleteCompletedTasks::class,
+        NotifyUnfinishedTasks::class
     ];
     /**
      * Define the application's command schedule.

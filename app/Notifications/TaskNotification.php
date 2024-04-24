@@ -13,7 +13,7 @@ class TaskNotification extends Notification
 {
     use Queueable;
 
-    protected $task;
+
     protected $subTasks;
 
     /**

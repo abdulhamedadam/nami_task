@@ -55,6 +55,9 @@ class SubTask_M extends Model
         if($notfinished_count==0){
             $param['status']='finished';
             Task_M::where('id', $main_task_id)->update(['status' => $param['status']]);
+        }else{
+            $param['status']='notfinished';
+            Task_M::where('id', $main_task_id)->update(['status' => $param['status']]);
         }
 
 

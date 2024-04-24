@@ -53,14 +53,13 @@
             <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-3"
                  id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
 
-
                 <div class="menu-item">
-                    <a class="menu-link {{ request()->routeIs('') ? 'active' : '' }}"
-                       href="">
+                    <a class="menu-link {{ request()->routeIs('admin.Tasks.tasks_data') ? 'active' : '' }}"
+                       href="{{ route('admin.Tasks.tasks_data') }}">
         <span class="svg-icon svg-icon-2" style="margin-left: 5px">
             <i class="bi bi-graph-up text-warning fs-2x"></i> <!-- Replace with the desired Bootstrap Icon class -->
         </span>
-                        <span class="menu-title">{{ translate('reports_statistics') }}</span>
+                        <span class="menu-title">{{ translate('tasks') }}</span>
                     </a>
                 </div>
 
