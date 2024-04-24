@@ -20,9 +20,8 @@ class Task_c extends Controller
     public function get_ajax_tasks(Request $request,Task_M $task_M)
     {
         if ($request->ajax()) {
-            //$data = Task_M::withCount('sub_tasks')->get(['id', 'name', 'description']);
-            // dd($data);
-            $data = $task_M->get_task_data();
+            $status = $request->input('status');
+            $data = $task_M->get_task_data($status);
             $counter = 0;
 
             return DataTables::of($data)
@@ -38,6 +37,12 @@ class Task_c extends Controller
                 })
                 ->addColumn('sub_tasks_number', function ($row) {
                     return $row->sub_tasks_count;
+                })
+
+                ->addColumn('status', function ($row) {
+                    $status_arr=['finished'=>translate('finished'),'notfinished'=>translate(' notfinished ')];
+
+                    return $status_arr[$row->status];
                 })
 
                 ->addColumn('actions', function ($row) {

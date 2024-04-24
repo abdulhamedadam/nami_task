@@ -20,6 +20,16 @@
 
                 <div class="card-body">
                     <div class="" >
+                        <div class="col-md-4">
+                            <label for="taskStatus">Filter by Status:</label>
+                            <select id="taskStatus" class="form-select">
+                                <option value="0">{{translate('all_tasks')}}</option>
+                                <option value="finished">{{translate('finished_tasks')}}</option>
+                                <option value="notfinished">{{translate('notfinished_tasks')}}</option>
+                            </select>
+                        </div>
+
+
                         <table id="table1" class="table table-bordered">
                             <thead>
                             <tr class="fw-bold fs-6 text-gray-800">
@@ -27,6 +37,7 @@
                                 <th style="text-align: center"> {{translate('task_name')}}</th>
                                 <th style="text-align: center"> {{translate('description')}}</th>
                                 <th style="text-align: center"> {{translate('sub_tasks_number')}}</th>
+                                <th style="text-align: center"> {{translate('status')}}</th>
                                 <th style=" text-align: center">{{translate('actions')}}</th>
                             </tr>
 
@@ -54,7 +65,7 @@
     <script>
 
         $(document).ready(function() {
-            //datatables
+
             table = $('#table1').DataTable({
                 "language": {
                     url: "{{ asset('assets/Arabic.json') }}"
@@ -70,6 +81,7 @@
                     { data: 'task_name', className: 'text-center' },
                     { data: 'description', className: 'text-center' },
                     { data: 'sub_tasks_number', className: 'text-center' },
+                    { data: 'status', className: 'text-center' },
                     { data: 'actions', className: 'text-center' },
                 ],
                 "columnDefs": [
@@ -121,6 +133,44 @@
                     { "extend": 'copy', "text": 'نسخ' }
                 ],
             });
+
+            $('#taskStatus').change(function() {
+                var status = $(this).val();
+
+                // Destroy the existing DataTable
+                table.destroy();
+
+                // Reinitialize DataTable with new AJAX data based on the selected status
+                table = $('#table1').DataTable({
+                    "language": {
+                        url: "{{ asset('assets/Arabic.json') }}"
+                    },
+                    "processing": true,
+                    "serverSide": true,
+                    "order": [],
+                    "ajax": {
+                        url: "{{ route('admin.Tasks.get_ajax_tasks') }}",
+                        data: { status: status }, // Send selected status as a parameter
+                    },
+                    "columns": [
+                        { data: 'id', className: 'text-center' },
+                        { data: 'task_name', className: 'text-center' },
+                        { data: 'description', className: 'text-center' },
+                        { data: 'sub_tasks_number', className: 'text-center' },
+                        { data: 'status', className: 'text-center' },
+                        { data: 'actions', className: 'text-center' },
+                    ],
+                    "columnDefs": [
+                        // Column definitions...
+                    ],
+                    "dom": 'Bfrtip',
+                    "buttons": [
+                        { "extend": 'excel', "text": 'شيت اكسيل' },
+                        { "extend": 'copy', "text": 'نسخ' }
+                    ],
+                });
+            });
+
 
             $("input").change(function(){
                 $(this).parent().parent().removeClass('has-error');
