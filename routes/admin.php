@@ -29,6 +29,8 @@ Route::group(
                 Route::get('/details/{id}', 'details')->name('details');
                 Route::get('/add_row', 'add_row')->name('add_row');
                 Route::get('/notify', 'sub_tasks_time_notifications')->name('notify');
+                Route::get('/delete_sub_task/{sub_task_id}/{main_task_id}', 'delete_sub_task')->name('delete_sub_task');
+                Route::post('/edit_sub_task/{main_task_id}', 'edit_sub_task')->name('edit_sub_task');
 
             });
 

@@ -85,9 +85,10 @@
                                                 <span style="color: red; font-size: 14px;" class="span_error_field_msg"></span>
                                             </td>
                                             <td>
-                                                @if($key > 4)
-                                                <a  style="width: 50px !important;" id="1" onclick=" $(this).closest('tr').remove();" class="btn btn-sm btn-danger"><i class="bi bi-trash" style="color: white;"></i></a>
-                                                @endif
+
+                                                <a  onclick="edit_row({{$task->id}})"  class="btn btn-sm btn-warning"><i class="bi bi-pencil" style="color: white;"></i></a>
+                                                <a  href="{{route('admin.Tasks.delete_sub_task',[$task->id,$main_task])}}"  onclick="return confirm('{{translate('confirm_delete_msg')}}');" class="btn btn-sm btn-danger"><i class="bi bi-trash" style="color: white;"></i></a>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -133,6 +134,28 @@
 
 @section('js')
 
+    <script>
+        function edit_row(row_id)
+        {
+            var sub_task_id = row_id;
+            var sub_task_name = $('#sub_task_name\\.' + row_id).val();
+            var sub_task_date = $('#date\\.' + row_id).val();
+            var sub_task_time = $('#time\\.' + row_id).val();
+
+            console.log('sub_task_name'+sub_task_name);
+            $.ajax({
+                url: '{{route("admin.Tasks.edit_sub_task",$main_task->id)}}',
+                type: "POST",
+                data: {sub_task_id:sub_task_id,sub_task_name:sub_task_name,sub_task_date:sub_task_date,sub_task_time:sub_task_time},
+                success: function (data) {
+
+                    window.location.href = "{{ route('admin.Tasks.edit_task',$main_task->id) }}";
+
+
+                }
+            });
+        }
+    </script>
 
     <script>
         function save() {

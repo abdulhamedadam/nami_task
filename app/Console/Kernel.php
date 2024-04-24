@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         $schedule->command('tasks:delete_completed_tasks')->everyMinute();
+        $schedule->command('tasks:notify-unfinished-tasks')->daily();
     }
 
 

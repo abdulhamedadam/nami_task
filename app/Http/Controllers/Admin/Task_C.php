@@ -174,6 +174,32 @@ class Task_C extends Controller
         return view('dashbord.admin.tasks.sub_task_data',$data);
     }
 
+    /**************************************************/
+    public function delete_sub_task(Request $request,$sub_task_id,$main_task_id)
+    {
+        try{
+            SubTask_M::where('main_task_id', $main_task_id)->where('id',$sub_task_id)->delete();
+            $request->session()->flash('toastMessage', translate('added_successfully'));
+            return redirect()->route('admin.Tasks.edit_task',$main_task_id);
+        }catch (\Exception $e) {
+            test($e->getMessage());
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    /************************************************/
+    public function edit_sub_task(Request $request,SubTask_M $subTask_M,$main_task_id)
+    {
+        try{
+           // dd($request->input('sub_task_name'));
+            $subTask_M->update_sub_task($request);
+            $request->session()->flash('toastMessage', translate('added_successfully'));
+            return redirect()->route('admin.Tasks.edit_task',$main_task_id);
+        }catch (\Exception $e) {
+            test($e->getMessage());
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 
 
 

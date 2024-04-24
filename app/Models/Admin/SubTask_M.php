@@ -63,4 +63,17 @@ class SubTask_M extends Model
 
     }
 
+
+    /*************************************************************/
+    public function update_sub_task($request)
+    {
+
+        $sub_task_id = $request->input('sub_task_id');
+        $data['name']=$request->input('sub_task_name');
+        $data['date_ar']=$request->input('sub_task_date');
+        $data['time']=$request->input('sub_task_time');
+        SubTask_M::where('id',$sub_task_id)->update($data);
+
+    }
+
 }
