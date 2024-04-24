@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             MainDataSeeder::class,
+            LanguageSeeder::class
         ]);
     }
 }

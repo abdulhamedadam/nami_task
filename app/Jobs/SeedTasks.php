@@ -23,7 +23,7 @@ class SeedTasks implements ShouldQueue
     {
         try {
             Task_M::factory()
-                ->count(5)
+                ->count(10000)
                 ->create();
         } catch (Exception $e) {
             // Handle the exception (e.g., log error)
