@@ -25,13 +25,15 @@ class TaskNotFinishedNotification extends Notification
     {
 
         return [
-            'type'             => 'unfinished_tasks',
-            'main_task_name'   =>  $this->Tasks->name,
-            'main_task_id'     =>  $this->Tasks->name,
-            'sub_task_name'    => '',
-            'date'             => '',
-            'time'             => '',
-            'status'           => '',
+            'type'                 => 'unfinished_tasks',
+            'title'                => 'مهام لم تنتهي خلال اليومين ',
+            'messages'             => $this->Tasks->name.'لم تنتهي خلال اليومين من انشائها ',
+            'main_task_name'       =>  $this->Tasks->name,
+            'main_task_id'         =>  $this->Tasks->id,
+            'sub_task_name'        => '',
+            'date'                 => '',
+            'time'                 => '',
+            'status'               => '',
         ];
     }
 }

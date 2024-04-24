@@ -12,7 +12,8 @@ Route::group(
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::get('dashboard', function () {
-            return view('dashbord.home');
+            $data['notifications'] = auth('admin')->user()->unreadNotifications;
+            return view('dashbord.home',$data);
         })->name('dashboard');
 
 

@@ -8,9 +8,11 @@ use App\Models\Notifications;
 use App\Models\TripDays;
 use App\Models\Trips;
 use App\Models\Admin\GeneralSetting;
+use  App\Models\Admin;
 use App\Traits\ImageProcessing;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use  Illuminate\Support\Facades\Auth;
 
 if (!function_exists('getMainData')) {
 
@@ -641,6 +643,27 @@ if (!function_exists('getMonthName')) {
 
 
 /********************************************/
+function AdminNotifications()
+{
+
+    $adminId = Auth::guard('admin')->id();
+    $notifications = \Illuminate\Notifications\DatabaseNotification::where('notifiable_id', $adminId)
+        ->where('notifiable_type', 'App\Models\Admin')
+        ->get();
+
+    return $notifications;
+}
+
+/*********************************************/
+ function get_count_notifications()
+{
+    $adminId = Auth::guard('admin')->id();
+    $count = \Illuminate\Notifications\DatabaseNotification::where('notifiable_id', $adminId)
+        ->where('notifiable_type', Admin::class)
+        ->count();
+
+    return $count;
+}
 
 
 

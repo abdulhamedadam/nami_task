@@ -29,6 +29,8 @@
                 <img alt="Logo" src="{{asset('assets/media/logos/default-small-dark.svg')}}" class="theme-dark-show h-30px"/>
             </a>
         </div>
+
+
         <!--end::Mobile logo-->
         <!--begin::Header wrapper-->
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1" id="kt_app_header_wrapper">
@@ -50,6 +52,55 @@
             <!--end::Menu wrapper-->
             <!--begin::Navbar-->
             <div class="app-navbar flex-shrink-0">
+
+
+
+
+
+                <div class="container mt-5">
+                    <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
+                         id="notificationIcon"
+                         data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                         data-kt-menu-attach="parent"
+                         data-kt-menu-placement="bottom-end">
+                        <i class="bi bi-bell-fill fs-3"></i>
+                        <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="margin-top: 25px;margin-bottom: -10px">
+                                   {{get_count_notifications()}}
+                       </span>
+                    </div>
+
+                    <!-- Notification List Container (Hidden by Default) -->
+                    <div id="notificationList" class="dropdown-menu dropdown-menu-end px-3 py-3" style="display: none;width: 200px;">
+                      <?php $data['notifications'] =AdminNotifications(); ?>
+                        @foreach($data['notifications'] as $notification)
+
+                            <a href="#" class="dropdown-item">{{ $notification->data['type'] }}</a>
+                        @endforeach
+                    </div>
+                </div>
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const notificationIcon = document.getElementById("notificationIcon");
+                        const notificationList = document.getElementById("notificationList");
+
+                        notificationIcon.addEventListener("click", function() {
+                            if (notificationList.style.display === "none" || notificationList.style.display === "") {
+                                notificationList.style.display = "block";
+                            } else {
+                                notificationList.style.display = "none";
+                            }
+                        });
+
+                        document.addEventListener("click", function(event) {
+                            if (!notificationList.contains(event.target) && event.target !== notificationIcon) {
+                                notificationList.style.display = "none";
+                            }
+                        });
+                    });
+                </script>
+
 
                 <!--begin::Languages-->
                 <div class="app-navbar-item ms-1 ms-lg-3">
@@ -326,6 +377,9 @@
                         <!--end::Svg Icon-->
                     </div>
                 </div>
+
+
+
                 <!--end::Header menu toggle-->
             </div>
             <!--end::Navbar-->
@@ -334,3 +388,16 @@
     </div>
     <!--end::Header container-->
 </div>
+<!-- Include jQuery library (if not already included) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#notificationIcon').length) {
+                $('#notificationList').slideUp();
+            }
+        });
+    });
+</script>

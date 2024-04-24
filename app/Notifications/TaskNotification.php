@@ -33,12 +33,15 @@ class TaskNotification extends Notification
     {
 
         return [
-            'main_task_id'     => $this->subTasks->id,
-            'main_task_name'   => $this->subTasks->name,
-            'sub_task_name'    => $this->subTasks->sub_task_name,
-            'date'             => $this->subTasks->date,
-            'time'             => $this->subTasks->time,
-            'status'           => $this->subTasks->tbl_sub_tasks,
+            'type'                 => 'sub_task_start',
+            'title'                => 'بدء المهمة ',
+            'messages'             => $this->subTasks->sub_task_name.'هذه المهمة بدأت الان ',
+            'main_task_id'         => $this->subTasks->id,
+            'main_task_name'       => $this->subTasks->name,
+            'sub_task_name'        => $this->subTasks->sub_task_name,
+            'date'                 => $this->subTasks->date,
+            'time'                 => $this->subTasks->time,
+            'status'               => $this->subTasks->status,
         ];
     }
 }
