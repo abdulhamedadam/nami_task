@@ -11,7 +11,7 @@
             <div class="d-flex flex-column flex-center p-6 p-lg-10 w-100">
                 <!--begin::Logo-->
                 <!--	<a href="../../demo1/dist/index.html" class="mb-0 mb-lg-20"> -->
-                <a href="{{route('admin.register')}}" class="mb-0 mb-lg-20">
+                <a href="{{route('register')}}" class="mb-0 mb-lg-20">
                     <img alt="Logo" src="{{asset('assets/media/logos/freefare last logo-01.png')}}" class="h-40px h-lg-50px" />
                 </a>
                 <!--end::Logo-->
@@ -48,7 +48,7 @@
                 @endif
                 <div class="w-lg-500px p-10">
                     <!--begin::Form-->
-                    <form method="POST" action="{{ route('admin.register') }}" class="form w-100" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('register') }}" class="form w-100" enctype="multipart/form-data">
                         <!-- id="kt_sign_up_form"  -->
                     @csrf
                     <!--begin::Heading-->
@@ -138,7 +138,7 @@
                         <!--end::Submit button-->
                         <!--begin::Sign up-->
                         <div class="text-gray-500 text-center fw-semibold fs-6">Already have an Account?
-                            <a href="{{route('admin.login')}}" class="link-primary fw-semibold">Sign in</a></div>
+                            <a href="{{route('login')}}" class="link-primary fw-semibold">Sign in</a></div>
                         <!--end::Sign up-->
                     </form>
 

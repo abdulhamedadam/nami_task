@@ -22,7 +22,7 @@ class Authenticate extends Middleware
                 return $this->responseApiError('not login', 405);
             }
             else {
-                return route('admin.login'); // Redirect to the login route for web guard
+                return route('login'); // Redirect to the login route for web guard
             }
         }
     }

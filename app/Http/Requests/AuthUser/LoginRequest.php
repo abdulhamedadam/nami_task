@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\AuthAdmin;
+namespace App\Http\Requests\AuthUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Admin;
 use Illuminate\Auth\Events\Lockout;
@@ -41,6 +41,7 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
 
+
         $this->ensureIsNotRateLimited();
 
 
@@ -48,7 +49,7 @@ class LoginRequest extends FormRequest
 
         $credentials['deleted_at'] = null; // Exclude soft-deleted users
 
-        if (! Auth::guard('admin')->attempt($credentials, $this->boolean('remember'))) {
+        if (! Auth::guard('web')->attempt($credentials, $this->boolean('remember'))) {
 
             RateLimiter::hit($this->throttleKey());
 

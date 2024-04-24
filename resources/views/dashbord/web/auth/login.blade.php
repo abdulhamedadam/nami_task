@@ -6,7 +6,7 @@
 <!--begin::Head-->
 <head>
     <base href="../../"/>
-    <title>{{(!empty($mainData->name)) ? $mainData->name : 'Lawyer'}}</title>
+    <title>{{(!empty($mainData->name)) ? $mainData->name : 'task_system'}}</title>
     <meta charset="utf-8"/>
     <meta name="description"
           content="The most advanced Bootstrap Admin Theme on Bootstrap Market trusted by over 4,000 beginners and professionals. Multi-demo, Dark Mode, RTL support. Grab your copy now and get life-time updates for free."/>
@@ -65,7 +65,7 @@
                 <!--begin::Wrapper-->
                 <div class="w-lg-500px p-10">
                     <!--begin::Form-->
-                    <form method="POST" action="{{ route('admin.login') }}" class="form w-100">
+                    <form method="POST" action="{{ route('login') }}" class="form w-100">
                     @csrf
 
                         @error('email')
@@ -95,13 +95,13 @@
                             <!--end::Password-->
                         </div>
                         <!--end::Input group=-->
-                    @if (Route::has('admin.password.request'))
+                    @if (Route::has('password.request'))
 
                         <!--begin::Wrapper-->
                             <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                                 <div></div>
                                 <!--begin::Link-->
-                                <a href="{{ route('admin.password.request') }}" class="link-primary">Forgot Password
+                                <a href="{{ route('password.request') }}" class="link-primary">Forgot Password
                                     ?</a>
                                 <!--end::Link-->
                             </div>
@@ -121,10 +121,10 @@
                         </div>
                         <!--end::Submit button-->
                         <!--begin::Sign up-->
-                        @if (Route::has('admin.register'))
+                        @if (Route::has('register'))
 
                             <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-                                <a href="{{route('admin.register')}}"
+                                <a href="{{route('register')}}"
                                    class="link-primary">Sign up</a>
 
                             <!--  <a href="{{url('signup')}}" class="link-primary">Sign Up -->

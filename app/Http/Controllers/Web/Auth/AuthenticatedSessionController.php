@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\Auth;
 use Illuminate\Validation\ValidationException;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AuthAdmin\LoginRequest;
+use App\Http\Requests\AuthUser\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,10 +26,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
         try {
             $request->authenticate();
         } catch (ValidationException $e) {
-           // dd($request);
+          dd($request);
             return redirect()->back()
                 ->withInput($request->only('email', 'password'))
                 ->withErrors(['email' => trans('auth.failed')]);
@@ -38,7 +39,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
+        return redirect()->intended(RouteServiceProvider::WEB_HOME);
     }
 
     /**
