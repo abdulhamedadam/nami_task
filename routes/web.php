@@ -21,7 +21,7 @@ Route::group(
                 Route::get('/tasks_data', 'tasks_data')->name('tasks_data');
                 Route::get('/get_ajax_tasks', 'get_ajax_tasks')->name('get_ajax_tasks');
                 Route::get('/show_sub_tasks/{id}', 'show_sub_tasks')->name('show_sub_tasks');
-                Route::post('/update_status/{id}', 'update_status')->name('update_status');
+                Route::get('/update_status/{id}/{status}/{main_task_id}', 'update_status')->name('update_status');
                 Route::get('/notify', 'sub_tasks_time_notifications')->name('notify');
 
             });

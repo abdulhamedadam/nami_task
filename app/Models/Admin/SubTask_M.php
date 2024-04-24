@@ -44,4 +44,20 @@ class SubTask_M extends Model
         }
     }
 
+    /*********************************************************************/
+    public function update_status($sub_task_id,$status,$main_task_id)
+    {
+        $status_arr=['notfinished'=>'finished','finished'=>'notfinished'];
+        $data['status']=$status_arr[$status];
+        SubTask_M::where('id', $sub_task_id)->where('main_task_id', $main_task_id)->update(['status' => $data['status']]);
+        $notfinished_count = SubTask_M::where('main_task_id', $main_task_id)->where('status', 'notfinished')->count();
+        // dd($notfinished_count);
+        if($notfinished_count==0){
+            $param['status']='finished';
+            Task_M::where('id', $main_task_id)->update(['status' => $param['status']]);
+        }
+
+
+    }
+
 }
