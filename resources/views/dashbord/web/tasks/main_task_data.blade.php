@@ -33,7 +33,6 @@
                                 <th style="width: 5%"{{translate('m')}}></th>
                                 <th style="text-align: center"> {{translate('task_name')}}</th>
                                 <th style="text-align: center"> {{translate('description')}}</th>
-                                <th style="text-align: center"> {{translate('sub_tasks_number')}}</th>
                                 <th style="text-align: center"> {{translate('status')}}</th>
                                 <th style=" text-align: center">{{translate('actions')}}</th>
                             </tr>
@@ -77,7 +76,6 @@
                     { data: 'id', className: 'text-center' },
                     { data: 'task_name', className: 'text-center' },
                     { data: 'description', className: 'text-center' },
-                    { data: 'sub_tasks_number', className: 'text-center' },
                     { data: 'status', className: 'text-center' },
                     { data: 'actions', className: 'text-center' },
                 ],
@@ -154,7 +152,6 @@
                         { data: 'id', className: 'text-center' },
                         { data: 'task_name', className: 'text-center' },
                         { data: 'description', className: 'text-center' },
-                        { data: 'sub_tasks_number', className: 'text-center' },
                         { data: 'status', className: 'text-center' },
                         { data: 'actions', className: 'text-center' },
                     ],

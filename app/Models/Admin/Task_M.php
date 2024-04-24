@@ -47,18 +47,10 @@ class Task_M extends Model
     /***************************************/
     public function get_task_data($status)
     {
-        $query = Task_M::select('tbl_tasks.id', 'tbl_tasks.name','tbl_tasks.status', 'tbl_tasks.description', DB::raw('COUNT(tbl_sub_tasks.main_task_id) as sub_tasks_count'))
-            ->leftJoin('tbl_sub_tasks', 'tbl_tasks.id', '=', 'tbl_sub_tasks.main_task_id');
-
-        if ($status !== '0' || $status !== null) {
-            if ($status == 'finished') {
-                $query->where('tbl_tasks.status', '=', 'finished');
-            } elseif ($status == 'notfinished') {
-                $query->where('tbl_tasks.status', '=', 'notfinished');
-            }
+        $query = Task_M::select('tbl_tasks.id', 'tbl_tasks.name','tbl_tasks.status', 'tbl_tasks.description');
+        if ($status === 'finished' || $status === 'notfinished') {
+            $query->where('tbl_tasks.status', '=', $status);
         }
-
-        $query->groupBy('tbl_tasks.id');
 
         return $query->get();
     }

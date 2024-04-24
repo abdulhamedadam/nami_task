@@ -35,9 +35,7 @@ class Task_c extends Controller
                 ->addColumn('description', function ($row) {
                     return $row->description;
                 })
-                ->addColumn('sub_tasks_number', function ($row) {
-                    return $row->sub_tasks_count;
-                })
+
 
                 ->addColumn('status', function ($row) {
                     $status_arr=['finished'=>translate('finished'),'notfinished'=>translate(' notfinished ')];
